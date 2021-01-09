@@ -4,7 +4,7 @@ TODO List:
 *** we should add try and catch methods!!
 
 Functionality:
-* Calculate the total (in Real-time changes)
+* (DONE)  Calculate the total (in Real-time changes)
 * display the Total in total Label
 * check if time limited to only (future time) and not (passed time)
   e.x.: time NOW:13:00, order time can't be selected before 13:00, and with about extra 30min for preparing the order, user can select time up from 13:30
