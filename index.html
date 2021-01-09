@@ -20,7 +20,7 @@
       onsubmit="checkOrder(event)"
       onchange="totalPrice(event)"
     >
-      <form action="">
+      <form action="" id="form">
         <div class="sizeContainer">
           <h2>Size :</h2>
           <div class="sizeOption">
@@ -121,6 +121,7 @@
               type="text"
               name="fullName"
               placeholder="Full Name : Tal Yaron"
+              pattern="[A-Za-z]"
             />
 
             <input type="number" name="phone" placeholder="Phone : 050566448" />

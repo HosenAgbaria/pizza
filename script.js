@@ -7,10 +7,11 @@
 };
 
 
+
 // Submit
 let checkOrder = (e) => {
-  // e.preventDefault();
-
+   e.preventDefault();
+try{
   console.log("ee", e.target);
   let orderData = {
     size: "",
@@ -32,6 +33,8 @@ let checkOrder = (e) => {
     //   orderData[e.target.name] = [...orderData[e.element.name],e.target.value]
 
     // }
+
+  
     if (element.name == "size" && element.checked) {
       orderData.size = element.value;
     } else if (element.name == "topping" && element.checked) {
@@ -56,18 +59,25 @@ let checkOrder = (e) => {
   });
 
   console.log("orderData", orderData);
+}catch(error) {
+    console.error(error);
+}
 };
 let minTime = () => {
   let t = document.getElementById("pickUpTime");
   t.max = "14:00";
   t.min = "00:00";
-
+    try{
   if (t.value > "11:00") {
     t.style.background = "green";
   } else {
     t.style.background = "red";
   }
   console.log("cccccc", t);
+}catch(error) {
+    console.error(error);
+
+};
 };
 
 function myTotal(){
@@ -76,6 +86,8 @@ function myTotal(){
 
 
   let myTotalToppings=[];
+
+  try{
   const children = [...document.getElementsByTagName('input')];
   children.forEach((child) => { 
   
@@ -127,4 +139,8 @@ function myTotal(){
   });
 
 
+}catch(error) {
+    console.error(error);
+
+};
 };

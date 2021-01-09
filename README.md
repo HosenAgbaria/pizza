@@ -5,14 +5,15 @@ TODO List:
 
 Functionality:
 * (DONE)  Calculate the total (in Real-time changes)
-* display the Total in total Label
-* check if time limited to only (future time) and not (passed time)
+* (DONE) display the Total in total Label
+* extra: check if time limited to only (future time) and not (passed time)
   e.x.: time NOW:13:00, order time can't be selected before 13:00, and with about extra 30min for preparing the order, user can select time up from 13:30
 
 
 Design:
 * Menu Style
-* Logo and name to be selected
+* (DONE) Logo and name to be selected
+* add imgs of toppings and drinks
 * view as  Mobile/Desktop - responsive
 * animation
 * click on whole div and not only radio button
