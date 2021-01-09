@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <link rel="stylesheet" href="style.css" />
+  <body>
+    <div class="placeTitle">
+      <h1 style="margin: 0">Pizza</h1>
+    </div>
+    <div
+      class="form"
+      style="text-align: center"
+      onsubmit="checkOrder(event)"
+      onchange="totalPrice(event)"
+    >
+      <form action="">
+        <div class="sizeContainer">
+          <h2>Size :</h2>
+          <div class="sizeOption">
+            <input type="radio" name="size" value="small" />
+            <label for="small">Small <span class="price"> 45 ₪ </span></label>
+          </div>
+          <div class="sizeOption">
+            <input type="radio" name="size" value="medium" />
+            <label for="meduim"
+              >Medium <span class="price"> 55 ₪ </span>
+            </label>
+          </div>
+          <div class="sizeOption">
+            <input type="radio" name="size" value="large" />
+            <label for="large">Large <span class="price"> 65 ₪ </span></label>
+          </div>
+        </div>
+        <br />
+
+        <div class="toppings">
+          <h2>Topping :</h2>
+          <p>
+            <span>*</span> Up to 3 For <span>Free</span>, more Extras for 3 ₪
+            per topping
+          </p>
+          <div class="top">
+            <input type="checkbox" name="topping" value="tuna" />
+            <label for="tuna">Tuna</label>
+          </div>
+
+          <div class="top">
+            <input type="checkbox" name="topping" value="Tomatos" />
+            <label for="tomato">Fresh Tomatoes</label>
+          </div>
+
+          <div class="top">
+            <input type="checkbox" name="topping" value="corn" />
+            <label for="corn">Corn</label>
+          </div>
+          <div class="top">
+            <input type="checkbox" name="topping" value="ExtraCheese" />
+            <label for="ExtraCheese">Extra Cheese</label>
+          </div>
+          <div class="top">
+            <input type="checkbox" name="topping" value="olives" />
+            <label for="olives">olives</label>
+          </div>
+          <div class="top">
+            <input type="checkbox" name="topping" value="paper" />
+            <label for="pappers">Bell peppers</label>
+          </div>
+          <div class="top">
+            <input type="checkbox" name="topping" value="mushrooms" />
+            <label for="mushrooms">Mushrooms</label>
+          </div>
+          <div class="top">
+            <input type="checkbox" name="topping" value="onion" />
+            <label for="onion">Onion</label>
+          </div>
+          <div class="top">
+            <input type="checkbox" name="topping" value="salami" />
+            <label for="salami">Salami</label>
+          </div>
+          <div class="top">
+            <input type="checkbox" name="topping" value=" jalapenoPoppers" />
+            <label for=" jalapenoPoppers"> Jalapeno poppers</label>
+          </div>
+        </div>
+
+        <div class="drinks">
+          <h2>Drinks</h2>
+          <p>
+            <span class="price"><span>* </span> Price : 10 ₪ </span>
+          </p>
+          <div class="drink">
+            <input type="radio" name="drink" value="Cola" />
+            <label for="cola">Coca Cola </label>
+          </div>
+          <div class="drink">
+            <input type="radio" name="drink" value="fanta" />
+            <label for="fanta">Fanta </label>
+          </div>
+
+          <div class="drink">
+            <input type="radio" name="drink" value="sprite" />
+            <label for="sprite">Sprite </label>
+          </div>
+
+          <div class="drink">
+            <input type="radio" name="drink" value="none" />
+            <label for="none">I'll skip this </label>
+          </div>
+        </div>
+
+        <div class="deliveryOrPickup">
+          <div class="userDetails">
+            <input
+              type="text"
+              name="fullName"
+              placeholder="Full Name : Tal Yaron"
+            />
+
+            <input type="number" name="phone" placeholder="Phone : 050566448" />
+          </div>
+
+          <h3>Delivery Or Pickup</h3>
+          <input type="radio" name="delivery" value="delivery" />
+          <label for="delivery">Delivery </label>
+          <input type="radio" name="delivery" value="pickup" />
+          <label for="pickup">Pickup </label>
+
+          <div class="dlivey">
+            dliveyDiv*dliveyDivdliveyDiv*dliveyDivdliveyDiv*dliveyDivdliveyDiv*dliveyDiv
+            <div class="adress">
+              <textarea
+                name="address"
+                id=""
+                cols="60"
+                rows="5"
+                placeholder="&#10; write your Full adress as example : &#10;&#10;12 Shderot Yerushalayim 68021 Tel Aviv - Yafo "
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="pickup">
+            PickupDiv*PickupDivPickupDiv*PickupDivPickupDiv*PickupDivPickupDiv*PickupDiv
+          </div>
+
+          <input
+            class="asadasd"
+            type="time"
+            min="now"
+            name="pickUpTime"
+            onchange="minTime()"
+            id="pickUpTime"
+          />
+        </div>
+        <div class="total">
+          <h4>
+            Total :
+            <h4 id="totalPrice">0</h4>
+            ₪
+          </h4>
+        </div>
+        <button type="submit">Order</button>
+      </form>
+    </div>
+  </body>
+  <script>
+    let totalPrice = (e) => {
+    var globalTotalPrice = 0;
+
+      let orderData = {
+        size: "",
+        toppings: [],
+        drinks: "",
+        total: 0,
+      };
+      let prices = {
+        size: { small: 45, medium: 55, large: 65 },
+        topping: 3,
+        drinks: 10,
+      };
+      console.log(e.target);
+      element = e.target;
+      if (element.name == "size" && element.checked) {
+        globalTotalPrice += prices.size[element.value];
+        console.log("total : ", globalTotalPrice);
+        orderData.size = element.value;
+      } else if (element.name == "drink" && element.checked) {
+        if (element.value == "none") {
+          globalTotalPrice += 0;
+        } else {
+          globalTotalPrice += prices.drink[element.value];
+          console.log("total : ", prices.drink[element.value]);
+          orderData.drink = element.value;
+        }
+      }
+      // let total = 0;
+      // document.getlem;
+    };
+    let checkOrder = (e) => {
+      // e.preventDefault();
+
+      console.log("ee", e.target);
+      let orderData = {
+        size: "",
+        toppings: [],
+        drinks: "",
+        fullName: "",
+        phone: "",
+        delivery: false,
+        address: "",
+        pickUpTime: "",
+        total: 0,
+      };
+      Object.values(e.target).forEach((element) => {
+        // orderData[element.name] = [Object.values(orderData[element.name]), element.value];
+
+        // if(orderData[e.target.name]){
+        //   orderData[e.target.name] = [...orderData[e.element.name],e.target.value]
+        // }else{
+        //   orderData[e.target.name] = [...orderData[e.element.name],e.target.value]
+
+        // }
+        if (element.name == "size" && element.checked) {
+          orderData.size = element.value;
+        } else if (element.name == "topping" && element.checked) {
+          orderData.toppings.push(element.value);
+        } else if (element.name == "drink" && element.checked) {
+          orderData.drinks = element.value;
+        } else if (element.name == "fullName") {
+          orderData.fullName = element.value;
+        } else if (element.name == "phone") {
+          orderData.phone = element.value;
+        } else if (element.name == "delivery" && element.checked) {
+          orderData.delivery = true;
+        } else if (element.name == "address") {
+          orderData.address = element.value;
+        } else if (element.name == "pickUpTime") {
+          orderData.pickUpTime = element.value;
+        } else if (element.name == "total") {
+          orderData.total = element.value;
+        }
+
+        // console.log("elemnt", element);
+      });
+
+      console.log("orderData", orderData);
+    };
+    let minTime = () => {
+      let t = document.getElementById("pickUpTime");
+      t.max = "14:00";
+      t.min = "00:00";
+
+      if (t.value > "11:00") {
+        t.style.background = "green";
+      } else {
+        t.style.background = "red";
+      }
+      console.log("cccccc", t);
+    };
+  </script>
+</html>
+
+<!-- articles = [{title:'bla', subTitle:'bla bal', image:'img source', background-color:'blue'}] -->

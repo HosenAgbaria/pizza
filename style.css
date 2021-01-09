@@ -1,0 +1,9 @@
+.placeTitle{
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  border: dotted 10px;
+  border-radius: 89px;
+  max-width: 800px;
+  margin: auto;
+}
