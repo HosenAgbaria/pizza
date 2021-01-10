@@ -1,19 +1,20 @@
 
    //onChange call to calculate Total Price
    let totalPrice = (e) => {
-
+    e.preventDefault();
     myTotal();  //Total in Real-Time
 
 };
 
 
 
-
+// var TotalDiscount=0;
 // Submit
 function checkOrder(e) {
-  //  e.preventDefault();
+  e.preventDefault();
   try {
     console.log("ee", e.target);
+    let olives=false;
     let orderData = {
       size: "",
       toppings: [],
@@ -36,6 +37,7 @@ function checkOrder(e) {
         orderData.size = element.value;
       } else if (element.name == "topping" && element.checked) {
         orderData.toppings.push(element.value);
+        if(element.value=='olives')olives=true;
       } else if (element.name == "drink" && element.checked) {
         orderData.drinks = element.value;
       } else if (element.name == "fullName") {
@@ -50,25 +52,38 @@ function checkOrder(e) {
         orderData.pickUpTime = element.value;
       } else if (element.name == "total") {
         orderData.total = element.value;
+        console.log(orderData.total);
       }
 
       // console.log("elemnt", element);
     });
 
     console.log("orderData", orderData);
-  } catch (error) {
-    console.error(error);
-  }
+  
+    orderData.total=document.getElementById("totalPrice").innerText;
+  // console.log(orderData);
+  // totalDiscount.apply(null,orderData);
+var TotalDiscount=0;
+console.log(olives);
+if(olives){
+  TotalDiscount = (orderData.total)*90/100;
+};
 
-  totalDiscount(orderData);
+console.log(TotalDiscount);
 
+
+
+
+} catch (error) {
+  console.error(error);
+}
 }
 
 
 
 let minTime = () => {
   let t = document.getElementById("pickUpTime");
-  t.max = "14:00";
+  // t.max = "14:00";
   t.min = "00:00";
     try{
   if (t.value > "11:00") {
@@ -150,7 +165,7 @@ function myTotal(){
 
 
 // Check if you got a discount because of choosing olives as one othe toppings
-function totalDiscount(orderData){
-  console.log(orderData);
+// function totalDiscount(x){
+//   console.log(x);
 
-};
+// };
