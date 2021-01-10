@@ -8,61 +8,64 @@
 
 
 
+
 // Submit
-let checkOrder = (e) => {
-   e.preventDefault();
-try{
-  console.log("ee", e.target);
-  let orderData = {
-    size: "",
-    toppings: [],
-    drinks: "",
-    fullName: "",
-    phone: "",
-    delivery: false,
-    address: "",
-    pickUpTime: "",
-    total: 0,
-  };
-  Object.values(e.target).forEach((element) => {
-    // orderData[element.name] = [Object.values(orderData[element.name]), element.value];
+function checkOrder(e) {
+  //  e.preventDefault();
+  try {
+    console.log("ee", e.target);
+    let orderData = {
+      size: "",
+      toppings: [],
+      drinks: "",
+      fullName: "",
+      phone: "",
+      delivery: false,
+      address: "",
+      pickUpTime: "",
+      total: 0,
+    };
+    Object.values(e.target).forEach((element) => {
+      // orderData[element.name] = [Object.values(orderData[element.name]), element.value];
+      // if(orderData[e.target.name]){
+      //   orderData[e.target.name] = [...orderData[e.element.name],e.target.value]
+      // }else{
+      //   orderData[e.target.name] = [...orderData[e.element.name],e.target.value]
+      // }
+      if (element.name == "size" && element.checked) {
+        orderData.size = element.value;
+      } else if (element.name == "topping" && element.checked) {
+        orderData.toppings.push(element.value);
+      } else if (element.name == "drink" && element.checked) {
+        orderData.drinks = element.value;
+      } else if (element.name == "fullName") {
+        orderData.fullName = element.value;
+      } else if (element.name == "phone") {
+        orderData.phone = element.value;
+      } else if (element.name == "delivery" && element.checked) {
+        orderData.delivery = true;
+      } else if (element.name == "address") {
+        orderData.address = element.value;
+      } else if (element.name == "pickUpTime") {
+        orderData.pickUpTime = element.value;
+      } else if (element.name == "total") {
+        orderData.total = element.value;
+      }
 
-    // if(orderData[e.target.name]){
-    //   orderData[e.target.name] = [...orderData[e.element.name],e.target.value]
-    // }else{
-    //   orderData[e.target.name] = [...orderData[e.element.name],e.target.value]
+      // console.log("elemnt", element);
+    });
 
-    // }
-
-  
-    if (element.name == "size" && element.checked) {
-      orderData.size = element.value;
-    } else if (element.name == "topping" && element.checked) {
-      orderData.toppings.push(element.value);
-    } else if (element.name == "drink" && element.checked) {
-      orderData.drinks = element.value;
-    } else if (element.name == "fullName") {
-      orderData.fullName = element.value;
-    } else if (element.name == "phone") {
-      orderData.phone = element.value;
-    } else if (element.name == "delivery" && element.checked) {
-      orderData.delivery = true;
-    } else if (element.name == "address") {
-      orderData.address = element.value;
-    } else if (element.name == "pickUpTime") {
-      orderData.pickUpTime = element.value;
-    } else if (element.name == "total") {
-      orderData.total = element.value;
-    }
-
-    // console.log("elemnt", element);
-  });
-
-  console.log("orderData", orderData);
-}catch(error) {
+    console.log("orderData", orderData);
+  } catch (error) {
     console.error(error);
+  }
+
+  totalDiscount(orderData);
+
 }
-};
+
+
+
 let minTime = () => {
   let t = document.getElementById("pickUpTime");
   t.max = "14:00";
@@ -143,4 +146,11 @@ function myTotal(){
     console.error(error);
 
 };
+};
+
+
+// Check if you got a discount because of choosing olives as one othe toppings
+function totalDiscount(orderData){
+  console.log(orderData);
+
 };
